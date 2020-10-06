@@ -1,0 +1,88 @@
+@media (max-width: 823px) {
+	main {
+		position: absolute;
+		top: 0;
+	}
+
+	h1 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	#question {
+		font-size: 1.25rem;
+	}
+
+	#ui {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.card {
+		padding: 0.25rem;
+	}
+
+	#guess-output,
+	#guesses-used,
+	#number-of-guesses {
+		font-size: 1rem;
+	}
+
+	#modal {
+		font-size: 1rem;
+	}
+
+	#modal-container {
+		width: 90%;
+	}
+
+	#modal-header {
+		font-size: 1.5rem;
+		padding: 0.5rem 0;
+	}
+
+	#modal-content {
+		padding: 0 0.5rem 0.5rem 0.5rem;
+	}
+
+	.btn {
+		padding: 0.5rem;
+		font-size: 0.75rem;
+	}
+
+	#btn-hide-modal {
+		margin-top: 0.25rem;
+	}
+
+	#modal-msg {
+		margin: 0.2rem;
+	}
+
+	#rules {
+		margin: 0.2rem;
+	}
+
+	#rules #rules-list {
+		margin: 0.2rem auto;
+	}
+
+	#rules ul {
+		padding: 0.25rem;
+	}
+
+	#rules ul li {
+		margin: 0.25rem 0;
+		font-size: 0.75rem;
+	}
+
+	.exclamation {
+		font-size: 3rem;
+	}
+
+	.exclamation-small {
+		color: var(--danger-bright-color);
+		font-size: 1.6rem;
+	}
+}
