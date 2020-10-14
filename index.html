@@ -4,38 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I'll Guess Your Secret Number</title>
+  <title>Is This Your Secret Number?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" media="screen and (max-width: 823px)" href="css/mobile.css">
+  <link rel="stylesheet" media="screen and (max-width: 823px)" href="css/widescreen.css">
+  <link rel="stylesheet" media="screen and (max-width: 540px)" href="css/mobile.css">
   <script src="js/logic.js" defer></script>
 </head>
 
 <body>
-  <main>
-    <section id="ui">
-      <div class="container">
-        <h1>I'll Try To Guess Your Secret Number</h1>
-        <div class="card card-wide">
-          <h2 id="question">Is this your secret number?</h2>
-          <h2 id="guess-output">-</h2>
-        </div>
-        <div class="grid-container">
-          <div class="card">
-            <h3>Guesses Used:</h3>
-            <h3 id="guesses-used">-</h3>
-          </div>
-          <div class="card">
-            <h3>Guesses Remaining:</h3>
-            <h3 id="number-of-guesses">-</h3>
-          </div>
-          <button id="btn-reset" class="btn">Reset</button>
-          <button id="btn-rules" class="btn">&rArr; How To Play &lArr;</button>
-          <button id="btn-higher" class="btn">Higher</button>
-          <button id="btn-lower" class="btn">Lower</button>
-          <button id="btn-correct" class="btn">Correct</button>
-        </div>
-      </div>
-    </section>
+  <main class="grid-container">
+    <div class="card" id="guess-crd">
+      <h1 id="question">Is this your secret number?</h1>
+      <h2 id="guess-output">-</h2>
+    </div>
+    <div id="guesses-used-crd" class="card">
+      <h3>Guesses Used</h3>
+      <h3 id="guesses-used">-</h3>
+    </div>
+    <div id="number-of-guesses-crd" class="card">
+      <h3>Guesses Remaining</h3>
+      <h3 id="number-of-guesses">-</h3>
+    </div>
+    <div class="card" id="score-crd">
+      <label>Player Wins:</label>
+      <p id="player-win-count">-</p>
+      <hr>
+      <label>Computer Wins:</label>
+      <p id="computer-win-count">-</p>
+    </div>
+    <button id="btn-rules" class="btn btn-danger">Help?</button>
+    <button id="btn-reset" class="btn btn-dark">Reset</button>
+    <button id="btn-correct" class="btn btn-dark">Correct</button>
+    <button id="btn-lower" class="btn btn-dark">Lower</button>
+    <button id="btn-higher" class="btn btn-dark">Higher</button>
   </main>
   <div id="backdrop" class="backdrop-exit"></div>
   <section id="modal" class="modal-exit">
@@ -44,7 +46,7 @@
       <div id="modal-content">
         <div id="modal-msg">I'm a modal message!</div>
         <hr>
-        <button id="btn-hide-modal" class="btn">Play</button>
+        <button id="btn-hide-modal" class="btn btn-dark">Play</button>
       </div>
     </div>
   </section>

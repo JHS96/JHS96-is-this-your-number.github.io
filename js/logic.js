@@ -1,4 +1,6 @@
 const question = document.getElementById('question');
+const playerWinsEl = document.getElementById('player-win-count');
+const computerWinsEl = document.getElementById('computer-win-count');
 const guessOutputEl = document.getElementById('guess-output');
 const remainingGuessesEl = document.getElementById('number-of-guesses');
 const guessesUsedEl = document.getElementById('guesses-used');
@@ -22,11 +24,13 @@ let max;
 let guess;
 let guessesRemaining;
 let guessesUsed;
-const guessedNumbers = [];
+let guessedNumbers = [];
 let isModalVisible = false;
 let rulesVisible = false;
 let gameOver = true;
 let areYouSure = false;
+let playerScore = 0;
+let computerScore = 0;
 
 // Initialize game + 1st guess
 initialize();
@@ -73,6 +77,7 @@ function cheatCheck(low, high) {
 		modalHeaderEl.innerText = 'Cheaty McCheaterson!!!';
 		modalMessageEl.innerHTML = "<p>You're Cheating!</p><p>No Fair!!!</p>";
 		modalBtnEl.innerText = 'Cheat Again?';
+		computerScore++;
 		toggleModalVisibility();
 	}
 }
@@ -81,17 +86,40 @@ function correctHandler() {
 	gameOver = true;
 	modalHeaderEl.innerText = 'Whoop! Whoop! Whoop!';
 	modalMessageEl.classList.add('exclamation');
-	modalMessageEl.innerHTML = "<p>That's right! I Win!!!</p>";
+	modalMessageEl.innerHTML = "<p>That's Right!</p><p>I Win!!!</p>";
 	modalBtnEl.innerText = 'Play Again?';
+	computerScore++;
 	toggleModalVisibility();
 }
 
+function checkWin() {
+	// If computer is unable to guess the user's number before the counter hits 0, the user wins.
+	if (guessesRemaining <= 0) {
+		modalHeaderEl.innerText = 'Yeah... All Right!';
+		modalMessageEl.classList.add('exclamation');
+		modalMessageEl.innerHTML = '<p>You Win!!!</p>';
+		modalBtnEl.innerText = 'Play Again?';
+		playerScore++;
+		toggleModalVisibility();
+	}
+}
+
+function resetGame() {
+	playerScore = 0;
+	computerScore = 0;
+	initialize();
+}
+
 function initialize() {
+	guessedNumbers = [];
 	if (areYouSure) {
-		question.classList.remove('exclamation-small');
+		question.classList.remove('exclamation');
 		areYouSure = false;
 	}
-	modalBtnEl.innerText = 'Play';
+	question.innerText = 'Is this your secret number?';
+	playerWinsEl.innerText = playerScore;
+	computerWinsEl.innerText = computerScore;
+	modalBtnEl.innerText = "Let's Go Already!";
 	startFakeLoadingEff(); // Start FAKE loading effect.
 	const initTimer = setTimeout(() => {
 		endFakeLoading(); // End FAKE loading effect
@@ -109,8 +137,6 @@ function initialize() {
 
 function startFakeLoadingEff() {
 	guessOutputEl.innerText = 'Loading...';
-	remainingGuessesEl.innerText = 'Loading...';
-	guessesUsedEl.innerText = 'Loading...';
 	btnHigherEl.setAttribute('disabled', 'disabled');
 	btnLowerEl.setAttribute('disabled', 'disabled');
 	btnCorrectEl.setAttribute('disabled', 'disabled');
@@ -131,16 +157,15 @@ function checkIfNumUsed(usedNumbers, guess) {
 	// If the computer guesses a number that has already been used, ask "Are you sure...". This
 	// makes it seem more human than a straight up computer algorithm.
 	if (isNumUsed >= 0) {
-		// question.setAttribute('class', 'exclamation-small');
-		question.classList.add('exclamation-small');
-		question.innerText = "Are you sure this isn't your number?";
+		question.classList.add('exclamation');
+		question.innerText = "Are you sure it isn't?";
 		areYouSure = true;
 	} else {
 		if (areYouSure) {
-			question.classList.remove('exclamation-small');
+			question.classList.remove('exclamation');
 			areYouSure = false;
+			question.innerText = 'Is this your secret number?';
 		}
-		question.innerText = 'Is this your secret number?';
 	}
 }
 
@@ -150,34 +175,23 @@ function updateDisplay() {
 	guessesUsedEl.innerText = guessesUsed;
 }
 
-function checkWin() {
-	// If computer is unable to guess the user's number before the counter hits 0, the user wins.
-	if (guessesRemaining <= 0) {
-		modalHeaderEl.innerText = 'Yeah... All Right!';
-		modalMessageEl.classList.add('exclamation');
-		modalMessageEl.innerHTML = '<p>You Win!!!</p>';
-		modalBtnEl.innerText = 'Play Again?';
-		toggleModalVisibility();
-	}
-}
-
 function displayRulesInModal() {
 	modalHeaderEl.innerText = 'How To Play:';
 	modalMessageEl.innerHTML = `
 		<section id="rules">
       <div id="rules-list">
         <ul>
-          <li>&diams; Think of any number between ${initMin} and ${initMax}. (Keep it to yourself).</li>
-          <li>&diams; I will try to guess your number in ${
+          <li>Think of any number between ${initMin} and ${initMax}. (Keep it to yourself).</li>
+          <li>I will try to guess your number in ${
 						initGuessesRemaining + 1
 					} guesses or less.</li>
-          <li>&diams; You win if I can't figure out your number within ${
+          <li>You win if I can't figure out your number within ${
 						initGuessesRemaining + 1
 					} guesses.</li>
-          <li>&diams; If your number is higher than my guess, click the "Higher" button.</li>
-          <li>&diams; If your number is lower than my guess, click the "Lower" button.</li>
-          <li>&diams; If my guess is correct, click the "Correct" button.</li>
-          <li>&diams; Be honest!</li>
+          <li>If your number is higher than my guess, click the "Higher" button.</li>
+          <li>If your number is lower than my guess, click the "Lower" button.</li>
+          <li>If my guess is correct, click the "Correct" button.</li>
+          <li>Be honest!</li>
         </ul>
 			</div>
 	`;
@@ -218,7 +232,7 @@ function toggleModalVisibility() {
 btnHigherEl.addEventListener('click', higherHandler);
 btnLowerEl.addEventListener('click', lowerHandler);
 btnCorrectEl.addEventListener('click', correctHandler);
-btnResetEl.addEventListener('click', initialize);
+btnResetEl.addEventListener('click', resetGame);
 btnRulesEl.addEventListener('click', displayRulesInModal);
 backdropEl.addEventListener('click', toggleModalVisibility);
 modalBtnEl.addEventListener('click', toggleModalVisibility);

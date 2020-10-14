@@ -1,88 +1,72 @@
-@media (max-width: 823px) {
-	main {
-		position: absolute;
-		top: 0;
-	}
+h3 {
+	font-size: 1.5rem;
+}
 
-	h1 {
-		font-size: 1.5rem;
-		margin-bottom: 0.5rem;
-	}
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
 
-	#question {
-		font-size: 1.25rem;
-	}
+.card {
+	height: 20vh;
+}
 
-	#ui {
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
+#score-crd label {
+	font-size: 1.25rem;
+}
 
-	.card {
-		padding: 0.25rem;
-	}
+#score-crd #player-win-count {
+	font-size: 1.5rem;
+}
 
-	#guess-output,
-	#guesses-used,
-	#number-of-guesses {
-		font-size: 1rem;
-	}
+#score-crd #computer-win-count {
+	font-size: 1.5rem;
+}
 
-	#modal {
-		font-size: 1rem;
-	}
+.btn {
+	height: 4rem;
+}
 
-	#modal-container {
-		width: 90%;
-	}
+#guess-crd {
+	grid-column: 1 / span 2;
+}
 
-	#modal-header {
-		font-size: 1.5rem;
-		padding: 0.5rem 0;
-	}
+#question {
+	font-size: 2rem;
+}
 
-	#modal-content {
-		padding: 0 0.5rem 0.5rem 0.5rem;
-	}
+#guess-output {
+	font-size: 2rem;
+}
 
-	.btn {
-		padding: 0.5rem;
-		font-size: 0.75rem;
-	}
+#score-crd {
+	grid-column: 1 / span 2;
+}
 
-	#btn-hide-modal {
-		margin-top: 0.25rem;
-	}
+#guesses-used-crd {
+	grid-column: 1 / span 1;
+}
 
-	#modal-msg {
-		margin: 0.2rem;
-	}
+#number-of-guesses-crd {
+	grid-column: 2 / span 1;
+}
 
-	#rules {
-		margin: 0.2rem;
-	}
+#btn-rules {
+	grid-column: 1 / span 1;
+}
 
-	#rules #rules-list {
-		margin: 0.2rem auto;
-	}
+#btn-reset {
+	grid-column: 2 / span 1;
+}
 
-	#rules ul {
-		padding: 0.25rem;
-	}
+#btn-correct {
+	grid-column: 1 / span 2;
+}
 
-	#rules ul li {
-		margin: 0.25rem 0;
-		font-size: 0.75rem;
-	}
+#btn-lower {
+	grid-column: 1 / span 1;
+}
 
-	.exclamation {
-		font-size: 3rem;
-	}
-
-	.exclamation-small {
-		color: var(--danger-bright-color);
-		font-size: 1.6rem;
-	}
+#btn-higher {
+	grid-column: 2 / span 1;
 }

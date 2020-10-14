@@ -1,0 +1,67 @@
+h3 {
+	font-size: 1.2rem;
+}
+
+.btn {
+  height: 18.5vh;
+	font-size: 1.25rem;
+}
+
+.card {
+  padding: 0.25rem;
+  height: 27vh;
+}
+
+#question {
+	font-size: 1.5rem;
+}
+
+#guess-output {
+	font-size: 1.3rem;
+}
+
+#score-crd label {
+	font-size: 1rem;
+}
+
+#score-crd #player-win-count {
+	font-size: 0.8rem;
+}
+
+#score-crd #computer-win-count {
+	font-size: 0.8rem;
+}
+
+.modal-enter {
+  transform: translateY(-8%);
+}
+
+#modal-container {
+  width: 95%;
+}
+
+#modal-header {
+  padding: 0.2rem;
+  font-size: 1.2rem;
+}
+
+#modal-content {
+  padding: 0.1rem;
+}
+
+#modal-msg {
+	margin: 0.1rem;
+}
+
+#rules {
+  margin: 0.2rem;
+}
+
+#rules ul li {
+  font-size: 0.75rem;
+  margin: 0.25rem;
+}
+
+#btn-hide-modal {
+	margin-top: 0.1rem;
+}
